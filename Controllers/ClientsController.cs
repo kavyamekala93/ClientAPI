@@ -1,4 +1,6 @@
+using ClientAPI.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace ClientAPI.Controllers
 {
@@ -6,15 +8,17 @@ namespace ClientAPI.Controllers
     [Route("api/[controller]")]
     public class ClientsController : ControllerBase
     {
-        [HttpGet]
-        public IActionResult GetClients()
-        {
-            var clients = new[]
-            {
-                new { Id = 1, Name = "John Smith", Advisor = "Sarah" },
-                new { Id = 2, Name = "Mary Jones", Advisor = "David" }
-            };
+        private readonly AppDbContext _context;
 
+        public ClientsController(AppDbContext context)
+        {
+            _context = context;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetClients()
+        {
+            var clients = await _context.Clients.ToListAsync();
             return Ok(clients);
         }
     }

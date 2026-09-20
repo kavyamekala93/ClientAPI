@@ -1,0 +1,23 @@
+# Build output
+bin/
+obj/
+
+# Compiled files
+*.dll
+*.pdb
+
+# IDE/editor
+.vs/
+.vscode/
+
+# Local/cache files
+*.cache
+*.tmp
+.DS_Store
+
+# Local environment/config with secrets
+appsettings.Development.json
+
+# User-specific files
+*.user
+*.suo
